@@ -232,9 +232,6 @@ apdisk
 Thumbs.db
 ehthumbs.db
 
-### Linux ###
-*~
-
 ### Node ###
 node_modules/
 
@@ -263,4 +260,3 @@ tools/**
 *.btp.cs
 *.btm.cs
 *.odx.cs
-*
