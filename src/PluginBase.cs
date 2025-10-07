@@ -4,48 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Mph.WPFAppPlugin
 {
+    public enum PluginTypes
+    {
+        SideMenu,
+
+        Banner,
+    }
+
     /// <summary>
     /// 插件基类
     /// </summary>
-    public class PluginBase : IPlugin
+    public abstract class PluginBase : IPlugin
     {
         public string Guid { get; } = System.Guid.NewGuid().ToString("N");
 
-        public string Name { get; set; } = "My Plugin";
+        public virtual string Header { get; set; } = "My Plugin";
 
-        public Type ContentType
-        {
-            get => m_ContentType;
-            set
-            {
-                if(!CheckContentType(value))
-                {
-                    throw new ArgumentException("ContentType must be a FrameworkElement type with a parameterless constructor.");
-                }
-                m_ContentType = value;
-            }
-        }
+        public abstract Type ContentType { get; }
 
-        private Type m_ContentType = null;
+        public virtual ImageSource Icon { get;}
 
-        private static bool CheckContentType(Type type)
-        {
-            if (type == null)
-            {
-                return false;
-            }
-            if (!typeof(System.Windows.FrameworkElement).IsAssignableFrom(type))
-            {
-                return false;
-            }
-            if (type.GetConstructor(Type.EmptyTypes) == null)
-            {
-                return false;
-            }
-            return true;
-        }
+        public virtual PluginTypes Type { get;} = PluginTypes.SideMenu;
+
+        public abstract void OnLoading();
     }
 }
