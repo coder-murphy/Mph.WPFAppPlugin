@@ -119,22 +119,7 @@ namespace Mph.WPFAppPlugin
 
             if(Window.Banner is not null)
             {
-                // var collection = new ObservableCollection<BannerItemViewModel>();
                 Window.Banner.Style = Application.Current.FindResource("PluginWindowBannerStyle") as Style;
-                //Window.Banner.ItemsSource = collection;
-                //foreach (var plugin in bannerPlugins)
-                //{
-                //    if (plugin.ContentType is null)
-                //    {
-                //        continue;
-                //    }
-                //    var item = new BannerItemViewModel
-                //    {
-                //        Header = plugin.Header,
-                //        Icon = plugin.Icon
-                //    };
-                //    collection.Add(item);
-                //}
             }
 
             await CurrentApp.Dispatcher.BeginInvoke(Window.OnPluginWindowInitialize);
